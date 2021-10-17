@@ -1,0 +1,7 @@
+{
+  "name": "chat_suporte",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jean Fraga <jeanfragoli395@gmail.com>",
+  "license": "MIT"
+}
