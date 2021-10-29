@@ -1,4 +1,4 @@
-import {UsersRepository} from "../reporitories/UserRepository"
+import {UsersRepository} from "../repositories/UserRepository"
 import {getCustomRepository} from "typeorm"
 
 class UserServices {

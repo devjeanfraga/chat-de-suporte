@@ -1,6 +1,6 @@
 
 import {getCustomRepository} from "typeorm";
-import {SettingsRepository} from "../reporitories/SettingsRepository";
+import {SettingsRepository} from "../repositories/SettingsRepository";
 
 
 interface SettingsCreate {
