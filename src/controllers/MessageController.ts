@@ -7,7 +7,7 @@ class MessageController {
     const {admin_id, text, user_id} = req.body
     const messageServices = new MessageServices();
 
-    const message =  messageServices.create({
+    const message =  await messageServices.create({
       admin_id,
       text,
       user_id
