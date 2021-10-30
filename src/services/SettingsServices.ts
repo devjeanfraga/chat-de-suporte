@@ -1,5 +1,6 @@
 
-import {getCustomRepository} from "typeorm";
+import {getCustomRepository, Repository} from "typeorm";
+import {Settings} from "../entities/Setting";
 import {SettingsRepository} from "../repositories/SettingsRepository";
 
 
@@ -10,10 +11,16 @@ interface SettingsCreate {
 
 class SettingsServices {
 
+  private settingsRepository: Repository<Settings>
+
+  constructor () {
+    this.settingsRepository = getCustomRepository(SettingsRepository)
+  }
+
   async create ({chat, username}: SettingsCreate) {
-    const settingsRepository = getCustomRepository(SettingsRepository)
     
-    const useAlreadyExists = await settingsRepository.findOne({
+    
+    const useAlreadyExists = await this.settingsRepository.findOne({
       username
     });
 
@@ -21,14 +28,14 @@ class SettingsServices {
       throw new Error ("User already exists");
     }
 
-    const settings =settingsRepository.create({
+    const settings = this.settingsRepository.create({
       chat,
       username
     })
     /* Seria como:
       const settings= new Settings()
     */
-    await settingsRepository.save(settings)
+    await this.settingsRepository.save(settings)
 
     return settings;
   }
