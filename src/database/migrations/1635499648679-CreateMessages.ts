@@ -35,7 +35,7 @@ export class CreateMessages1635499648679 implements MigrationInterface {
             {
               //user_id refere-se ao id da Table user
               name: "FKUser",
-              referencedTableName: "user",
+              referencedTableName: "users",
               referencedColumnNames: ["id"],
               columnNames: ["user_id"],
               onDelete: "SET NULL" ,
