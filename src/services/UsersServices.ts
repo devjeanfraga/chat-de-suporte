@@ -2,7 +2,7 @@ import {UsersRepository} from "../repositories/UserRepository";
 import {Users} from "../entities/User";
 import {getCustomRepository, Repository} from "typeorm";
 
-class UserServices {
+class UsersServices {
 
   private userRepository: Repository<Users>
 
@@ -29,6 +29,11 @@ class UserServices {
     return user;
 
   }
+
+  async findByEmail(email: string) {
+    return this.userRepository.findOne({ email })
+  }
+  
 }
 
-export {UserServices}
+export {UsersServices}
