@@ -1,5 +1,5 @@
 import {getCustomRepository, Repository}  from "typeorm";
-import {Connection} from "../entities/connection"
+import {Connections} from "../entities/connection"
 import {ConnectionRepository} from "../repositories/ConnectionsRepository";
 
 interface IConnectionCreate {
@@ -11,7 +11,7 @@ interface IConnectionCreate {
 
 class ConnectionsServices {
 
-  private connectionRepository: Repository<Connection>
+  private connectionRepository: Repository<Connections>
 
   constructor () {
     this.connectionRepository = getCustomRepository(ConnectionRepository);

@@ -1,15 +1,24 @@
 import {io} from '../http';
 import {ConnectionsServices} from "../services/ConnectionsServices";
 import {UsersServices}  from "../services/UsersServices";
+import {MessagesServices}  from "../services/MessagesServices";
 
+
+interface IParams {
+  text: string;
+  email: string;
+}
 
 io.on("connect", (socket)=> {
   const connectionsServices = new ConnectionsServices();
   const usersServices = new UsersServices();
+  const messagesServices =  new MessagesServices();
 
-  socket.on("client_first_access", async( params) => {
+    socket.on("client_first_access", async( params ) => {
+    
     const socket_id = socket.id;
-    const {text, email} = params;
+    const {text, email} = params as IParams
+    let user_id = null;
 
     //console.log(params);
     const userExists = await usersServices.findByEmail(email)
@@ -21,7 +30,10 @@ io.on("connect", (socket)=> {
         socket_id,
         user_id: user.id 
       })
+
+      user_id = user.id;
     } else {
+      user_id = userExists.id; 
       const connection = await connectionsServices.findByUserId(userExists.id);
       
       if (!connection) {
@@ -31,11 +43,14 @@ io.on("connect", (socket)=> {
         });
       } else {
         connection.socket_id = socket_id;
+
         await connectionsServices.create(connection)
       }
     }
 
-
-
+    await messagesServices.create({
+      text,
+      user_id
+    })
   })
 })

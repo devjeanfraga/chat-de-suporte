@@ -4,7 +4,7 @@ import {Users} from "./User";
  
 
 @Entity("connections")
-class Connection {
+class Connections {
 
   @PrimaryColumn()
   id: string;
@@ -35,4 +35,4 @@ class Connection {
   }
 }
 
-export {Connection}
+export {Connections}

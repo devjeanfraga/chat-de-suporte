@@ -1,5 +1,5 @@
 import {getCustomRepository, Repository} from "typeorm"
-import {Message} from '../entities/Message'
+import {Messages} from '../entities/Message'
 import { MessagesRepository } from "../repositories/MessagesRepository"
 
 interface IMessageCreate {
@@ -11,7 +11,7 @@ interface IMessageCreate {
 
 class MessagesServices {
 
-  private messagesRepository: Repository<Message>;
+  private messagesRepository: Repository<Messages>;
 
   constructor () {
     this.messagesRepository = getCustomRepository(MessagesRepository)
@@ -41,7 +41,6 @@ class MessagesServices {
 
       return list;
   }
-
 
 }
 
