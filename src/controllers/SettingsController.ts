@@ -15,6 +15,24 @@ class SettingsController {
      return res.status(400).json({message: err})
     }
   }
+
+  async findByUserName(req: Resquest, res: Response ) {
+    const {username} = req.params
+    const settingsServices = new SettingsServices()
+    const settings = await settingsServices.findByUserName(username)
+
+    return res.json(settings);
+  }
+
+  async aupdate(req: Resquest, res: Response ) {
+    const {username} = req.params;
+    const {chat} = req.body;
+
+    const settingsServices = new SettingsServices();
+
+    const settings = await settingsServices.update(username, chat);
+    return res.json(settings)
+  } 
 }
 
 export {SettingsController}
