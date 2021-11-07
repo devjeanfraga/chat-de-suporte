@@ -1,4 +1,4 @@
-import {Connection, getCustomRepository, Repository}  from "typeorm";
+import { getCustomRepository, Repository}  from "typeorm";
 import {Connections} from "../entities/connection"
 import {ConnectionRepository} from "../repositories/ConnectionsRepository";
 
@@ -56,7 +56,7 @@ class ConnectionsServices {
   async updateAdminID (user_id: string, admin_id: string) {
     await this.connectionRepository
     .createQueryBuilder()
-    .update(Connection)
+    .update(Connections)
     .set({admin_id})
     .where("user_id = :user_id", {
       user_id
